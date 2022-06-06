@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "control-clientes-a6f1f": {
+      "hosting": {
+        "control-clientes": [
+          "control-clientes-a6f1f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "control-clientes-a6f1f"
+  }
+}
