@@ -7,11 +7,10 @@ import { ClienteServicio } from 'src/app/servicios/cliente.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
-
-  clientes: Cliente[]
+  clientes: Cliente[];
   cliente: Cliente = {
     nombre: '',
     apellido: '',
@@ -19,39 +18,44 @@ export class ClientesComponent implements OnInit {
     saldo: 0,
   };
 
-  @ViewChild("clienteForm") clienteForm: NgForm;
+  @ViewChild('clienteForm') clienteForm: NgForm;
 
-  @ViewChild("botonCerrar") bottonCerrar: ElementRef;
+  @ViewChild('botonCerrar') bottonCerrar: ElementRef;
 
-  constructor(private clientesServicio: ClienteServicio, private flashMessages: FlashMessagesService) { }
+  constructor(
+    private clientesServicio: ClienteServicio,
+    private flashMessages: FlashMessagesService
+  ) {}
 
   ngOnInit(): void {
-    this.clientesServicio.getClientes().subscribe(
-      clientes => {
-        console.log(clientes);
-        this.clientes = clientes;
-      }
-    )
+    this.clientesServicio.getClientes().subscribe((clientes) => {
+      console.log(clientes);
+      this.clientes = clientes;
+    });
   }
 
-  getSaldoTotal(){
+  getSaldoTotal() {
     let saldoTotal: number = 0;
-    if(this.clientes){
-      this.clientes.forEach( cliente => {
+    if (this.clientes) {
+      this.clientes.forEach((cliente) => {
         saldoTotal += cliente.saldo;
-      })
+      });
     }
     return saldoTotal;
   }
 
-  agregar({value, valid}: NgForm){
-    if(!valid){
-      this.flashMessages.show('Por favor rellena el formulario correctamente.', {
-        cssClass: 'alert-danger',timeout: 4000
-      });
+  agregar({ value, valid }: NgForm) {
+    if (!valid) {
+      this.flashMessages.show(
+        'Por favor rellena el formulario correctamente.',
+        {
+          cssClass: 'alert-danger',
+          timeout: 4000,
+        }
+      );
     } else {
       // Agregar
-      this.clientesServicio.agregarCliente(value) 
+      this.clientesServicio.agregarCliente(value);
       this.clienteForm.resetForm();
       this.cerrarModal();
     }
@@ -60,5 +64,4 @@ export class ClientesComponent implements OnInit {
   private cerrarModal() {
     this.bottonCerrar.nativeElement.click();
   }
-
 }
