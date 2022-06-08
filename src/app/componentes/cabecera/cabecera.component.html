@@ -14,10 +14,13 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">     
+      <ul *ngIf="isLoggedIn" class="navbar-nav me-auto mb-2 mb-lg-0">     
         <li class="nav-item px-2">
           <a routerLink="/" class="nav-link">Inicio</a>
         </li>   
+      </ul>
+      <ul  *ngIf="!isLoggedIn" class="navbar-nav me-auto mb-2 mb-lg-0">
+
       </ul>
       <ul class="navbar-nav">
         
@@ -29,8 +32,9 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            *ngIf="isLoggedIn"
           >
-              <i class="fas fa-user"></i>Bienvenido
+              <i class="fas fa-user"></i>Bienvenido {{loggedInUser}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a routerLink="configuracion" class="dropdown-item">
@@ -38,9 +42,14 @@
             </a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn">
           <a routerLink="/login" class="nav-link">
             <i class="fas fa-user"></i> Login
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a style="cursor: pointer" (click)="logout()" class="nav-link">
+            <i class="fas fa-user-times"></i> Salir
           </a>
         </li>
       </ul>
