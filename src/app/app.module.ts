@@ -24,6 +24,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ClienteServicio } from './servicios/cliente.service';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { LoginService } from './servicios/login.service';
+import { AuthGuard } from './componentes/guardianes/auth.guard';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { LoginService } from './servicios/login.service';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [ClienteServicio, LoginService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [ClienteServicio, LoginService, AuthGuard, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
