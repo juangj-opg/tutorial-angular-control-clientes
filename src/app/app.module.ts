@@ -24,7 +24,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ClienteServicio } from './servicios/cliente.service';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { LoginService } from './servicios/login.service';
-import { AuthGuard } from './componentes/guardianes/auth.guard';
+import { AuthGuard } from './guardianes/auth.guard';
 
 @NgModule({
   declarations: [
