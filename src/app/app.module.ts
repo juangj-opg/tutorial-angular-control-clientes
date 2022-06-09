@@ -26,6 +26,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { LoginService } from './servicios/login.service';
 import { AuthGuard } from './guardianes/auth.guard';
 import { ConfiguracionService } from './servicios/configuracion service';
+import { ConfiguracionGuard } from './guardianes/configuracion.guard';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { ConfiguracionService } from './servicios/configuracion service';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [ClienteServicio, LoginService, AuthGuard, ConfiguracionService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [ClienteServicio, LoginService, AuthGuard, ConfiguracionService, ConfiguracionGuard, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

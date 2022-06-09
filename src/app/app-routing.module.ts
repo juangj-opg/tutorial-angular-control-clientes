@@ -7,11 +7,12 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { TableroComponent } from './componentes/tablero/tablero.component';
+import { ConfiguracionGuard } from './guardianes/configuracion.guard';
 
 const routes: Routes = [
   {path: '', component: TableroComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegistroComponent},
+  {path: 'register', component: RegistroComponent, canActivate: [ConfiguracionGuard]},
   {path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard]},
   {path: 'cliente/editar/:id', component: EditarClienteComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent}
